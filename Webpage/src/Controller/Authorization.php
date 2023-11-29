@@ -11,9 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class Authorization extends AbstractController
 {
 	#[Route('/authorization', name: 'authorization')]
-	public function index(Request $request, TwitchApiClient $twitchApiClient): Response
-	{
-
+	public function index(Request $request, TwitchApiClient $twitchApiClient): Response {
 		$queryParams = $request->query->all();
 
 		$code = $queryParams['code'] ?? null;
@@ -33,8 +31,7 @@ class Authorization extends AbstractController
 	}
 
 	#[Route('authorization/refresh', name: 'refresh')]
-	public function refresh(TwitchApiClient $twitchApiClient): Response
-	{
+	public function refresh(TwitchApiClient $twitchApiClient): Response {
 		$refresh_token = $_COOKIE["refresh_token"] ?? null;
 
 		if ($refresh_token == null) {

@@ -4,12 +4,14 @@
 		<div class="row">
 			<h1 class="text-center  mt-5">CollectMeBot is ready to join your chat...</h1>
 			<div class="text-center mt-5">
-				<button type="button" class="twitch-button">
-					<div class="twitch-button__container">
-						<div>Connect your Twitch</div>
-						<img src="{{ asset('images/twitch.png') }}" alt="twitch" class="nav__twitch">
-					</div>
-				</button>
+				<a href="https://id.twitch.tv/oauth2/authorize?client_id={{app.request.server.get('CLIENT_ID')}}&redirect_uri={{app.request.server.get('REDIRECT_URI')}}&response_type=code&scope=moderator%3Aread%3Achatters">
+					<button type="button" class="twitch-button">
+						<div class="twitch-button__container">
+							<div>Connect your Twitch</div>
+							<img src="{{ asset('images/twitch.png') }}" alt="twitch" class="nav__twitch">
+						</div>
+					</button>
+				</a>
 			</div>
 		</div>
 		<div class="row mt-5 text-center">
@@ -40,7 +42,7 @@
 		</div>
 		<div class="row mt-5">
 			<div class="text-center col-12">
-				<img class="rounded shadow" src="{{ asset('images/placeholder.png') }}" alt="placerholder" />
+				<img class="rounded shadow" src="{{ asset('images/placeholder.png') }}" alt="placeholder" />
 			</div>
 		</div>
 		<div class="row mt-5">

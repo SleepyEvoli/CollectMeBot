@@ -54,7 +54,7 @@ class ChannelWriter {
 		return $channels;
 	}
 
-	public function save($channels): void {
+	private function save($channels): void {
 		$file = fopen($this->file, "w");
 		fwrite($file, implode(',', $channels));
 		fclose($file);

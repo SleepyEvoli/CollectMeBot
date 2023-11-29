@@ -10,7 +10,7 @@
 				</div>
 			{% else %}
 				<div class="nav__element">
-					<a href="https://id.twitch.tv/oauth2/authorize?client_id=ikt7vfcc895mvotacyjnbvuh7m2duk&redirect_uri=http://localhost:8000/authorization&response_type=code&scope=moderator%3Aread%3Achatters">
+					<a href="https://id.twitch.tv/oauth2/authorize?client_id={{app.request.server.get('CLIENT_ID')}}&redirect_uri={{app.request.server.get('REDIRECT_URI')}}&response_type=code&scope=moderator%3Aread%3Achatters">
 						<button type="button" class="twitch-button">
 							<div class="twitch-button__container">
 								<div>Connect your Twitch</div>

@@ -9,6 +9,7 @@ use App\Service\ChannelWriter;
 use App\Service\TwitchApiClient;
 
 class Dashboard extends AbstractController {
+	
 	#[Route('/dashboard', name: 'dashboard')]
 	public function index(TwitchApiClient $twitchApiClient): Response {
 		$access_token = $_COOKIE["access_token"] ?? null;

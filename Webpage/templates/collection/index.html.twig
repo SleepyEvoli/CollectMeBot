@@ -14,7 +14,7 @@
 							{% for collectible in channelValue %}
 								<div class="collection__element {{ collectible.shiny ? 'shiny' : ''  }}">
 									<div class="collection__image">
-										<img src={{asset("images/collectibles/" ~ collectible.image )}} alt="image">
+										<img src={{asset("images/collectibles/" ~ collectible.image )}} alt="collection image">
 									</div>
 									<div class="collection__name">{{ collectible.name }} {{ collectible.shiny ? '(shiny)' : ''  }}</div>
 									<div class="collection__category">{{ collectible.category }}</div>
