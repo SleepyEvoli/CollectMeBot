@@ -8,4 +8,5 @@ export default class Config {
 	public static readonly COLLECTION_URL: string = 'https://collectmebot.dasevoli.com/collection/';
 	public static readonly SHINY_CHANCE: number = 0.1;
 	public static readonly MESSAGE_DELAY: number = 1000 * 3;
+	public static readonly CHECK_FOR_NEW_CHANNELS_INTERVAL: number = 1000 * 60 * 5;
 }

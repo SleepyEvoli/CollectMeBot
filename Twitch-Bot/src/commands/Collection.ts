@@ -1,8 +1,8 @@
 import Context from "../entities/Context";
-import SaveManager from "../managers/SaveManager";
 import ChatCommand from "../interfaces/ChatCommand";
 import Config from "../Config";
 import MessageQueueManager from "../managers/MessageQueueManager";
+import SaveManagerCollection from "../managers/SaveManagerCollection";
 
 export default class Collection implements ChatCommand {
 	
@@ -19,7 +19,7 @@ export default class Collection implements ChatCommand {
 	}
 
 	async execute(ctx: Context): Promise<void> {
-		const saveManager = SaveManager.getInstance();
+		const saveManager = new SaveManagerCollection();
 		const messageQueueManager = MessageQueueManager.getInstance();
 		let collection = null;
 		let name = null;
@@ -31,10 +31,10 @@ export default class Collection implements ChatCommand {
 			if (name.startsWith('@')) {
 				name = name.substring(1);
 			}
-			collection = saveManager.getCollectionByName(ctx.channel.name, name);
+			collection = saveManager.getCollection(ctx.channel.name, name);
 		} else {
 			name = ctx.user.displayName
-			collection = saveManager.getCollection(ctx.channel.name, ctx.user);
+			collection = saveManager.getCollection(ctx.channel.name, ctx.user.login);
 		}
 		 if (collection.length == 0) {
 			messageQueueManager.addMessage(`${name} has no collection yet.`, ctx.channel.name);

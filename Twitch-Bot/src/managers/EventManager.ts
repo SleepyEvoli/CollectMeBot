@@ -3,32 +3,22 @@ import ChatEvent from '../interfaces/ChatEvent';
 import { EventState } from '../CustomEnums';
 import GameStateManager from './GameStateManager';
 import Config from '../Config';
-import Bot from '../entities/Bot';
 import MessageQueueManager from './MessageQueueManager';
+import Channel from '../entities/Channel';
+import User from '../entities/User';
 
 export default class EventManager {
 	
-	private static instance: EventManager;
-	currentEvent: ChatEvent | null;
-	events: ChatEvent[];
-	state: EventState;
+	currentEvent: ChatEvent | null = null;
+	events: ChatEvent[] = [new AppearEvent(this)];
+	state: EventState = EventState.STOPPED;
+	channel: Channel;
 
-	private constructor() {
-		this.currentEvent = null;
-		this.events = [
-			new AppearEvent()
-		];
-		this.state = EventState.STOPPED;
+	public constructor(channel: Channel) {
+		this.channel = channel;
 	}
 
-	public static getInstance(): EventManager {
-		if (!EventManager.instance) {
-			EventManager.instance = new EventManager();
-		}
-		return EventManager.instance;
-	}
-
-	startEventLooper(random: boolean = true) {
+	async startEventLooper(random: boolean = true) {
 		const messageQueueManager = MessageQueueManager.getInstance();
 		setInterval(() => {
 			if (this.state === EventState.JOIN || this.state === EventState.RUNNING) {
@@ -36,7 +26,7 @@ export default class EventManager {
 				return;
 			}
 
-			messageQueueManager.addMessageToAllChannels(`A new event is starting!`);
+			messageQueueManager.addMessage("An event is starting!", this.channel.name);
 			
 			let event: ChatEvent = this.events[0];
 			if (random) {
@@ -47,7 +37,8 @@ export default class EventManager {
 					this.events.push(event);
 				}
 			}
-			GameStateManager.getInstance().resetGameStates();
+
+			GameStateManager.getInstance().resetGameStates(); // TODO: Better solution for GameState that is not a singleton?
 			this.currentEvent = event;
 			event.start();
 		}, Config.EVENT_COOLDOWN);

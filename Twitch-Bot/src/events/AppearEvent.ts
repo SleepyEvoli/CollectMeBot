@@ -1,52 +1,48 @@
 import ChatEvent from '../interfaces/ChatEvent';
 import EventManager from '../managers/EventManager';
 import { EventState } from '../CustomEnums';
-import Bot from '../entities/Bot';
 import GameStateManager from '../managers/GameStateManager';
 import CollectionManager from '../managers/CollectionManager';
-import SaveManager from '../managers/SaveManager';
 import Collectible from '../entities/Collectible';
 import Config from '../Config';
 import MessageQueueManager from '../managers/MessageQueueManager';
+import SaveManagerCollection from '../managers/SaveManagerCollection';
 
 export default class AppearEvent implements ChatEvent {
 	
-	name: string;
-	description: string;
-	collectible: Collectible | null;
+	name: string = 'appear';
+	description: string = 'A character appears and players have to catch it.';
+	collectible: Collectible | null = null;
 	shiny: boolean = false;
+	eventManager: EventManager;
 
-	constructor() {
-		this.name = 'appear';
-		this.description = 'A character appears and players have to catch it.';
-		this.collectible = null;
+	constructor(eventManager: EventManager) {
+		this.eventManager = eventManager;
 	}
 
 	async start() {
-		const eventManager = EventManager.getInstance();
-		const bot = Bot.getInstance();
 		const collectionManager = CollectionManager.getInstance();
 
-		eventManager.state = EventState.JOIN;
+		this.eventManager.state = EventState.JOIN;
 		this.collectible = collectionManager.getRandomCollectible();
 
 		const messageQueueManager = MessageQueueManager.getInstance();
-		messageQueueManager.addMessageToAllChannels(`${this.collectible.name} from ${this.collectible.category} has appeared! Type !catch to catch it!`);
+		messageQueueManager.addMessage(`${this.collectible.name} from ${this.collectible.category} has appeared! Type !catch to catch it!`, this.eventManager.channel.name);
 		this.shiny = Math.random() < Config.SHINY_CHANCE;
 		if (this.shiny) {
-			messageQueueManager.addMessageToAllChannels(`Holy moly! It is a shiny ${this.collectible.name}!`);
+		messageQueueManager.addMessage(`Holy moly! It is a shiny ${this.collectible.name}!`, this.eventManager.channel.name);
 		}
 		await new Promise(resolve => setTimeout(resolve, Config.EVENT_DURATION));
 		this.execute();
 	}
 
 	execute() {
-		const eventManager = EventManager.getInstance();
-		const saveManager = SaveManager.getInstance();
+		const saveManager = new SaveManagerCollection();
+
 		const gameStateManager = GameStateManager.getInstance();
 		const messageQueueManager = MessageQueueManager.getInstance();
 
-		eventManager.state = EventState.RUNNING;
+		this.eventManager.state = EventState.RUNNING;
 		gameStateManager.getGameStates().forEach((gameState) => {
 			if (this.collectible) {
 				if (gameState.players.length === 0) {
@@ -70,8 +66,7 @@ export default class AppearEvent implements ChatEvent {
 	}
 
 	finish() {
-		const eventManager = EventManager.getInstance();
-		eventManager.state = EventState.STOPPED;
+		this.eventManager.state = EventState.STOPPED;
 	}
 
 }

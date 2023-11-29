@@ -4,6 +4,7 @@ import ChatCommand from "../interfaces/ChatCommand";
 import { EventState } from "../CustomEnums";
 import GameStateManager from "../managers/GameStateManager";
 import AppearEvent from "../events/AppearEvent";
+import ChannelInstanceManager from "../managers/ChannelInstanceManager";
 
 export default class Catch implements ChatCommand {
 	
@@ -20,7 +21,10 @@ export default class Catch implements ChatCommand {
 	}
 
 	execute(ctx: Context): void {
-		const eventManager = EventManager.getInstance();
+		const channelInstanceManager = ChannelInstanceManager.getInstanceByChannelName(ctx.channel.name);
+		if (!channelInstanceManager) return;
+		
+		const eventManager = channelInstanceManager.getEventManager();
 		if (eventManager.currentEvent && eventManager.currentEvent instanceof AppearEvent && eventManager.state === EventState.JOIN) {
 			const gameState = GameStateManager.getInstance().getGameState(ctx.channel);
 			if (!gameState.playerExists(ctx.user)){
