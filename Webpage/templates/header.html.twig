@@ -1,0 +1,27 @@
+{% block header %}
+	<nav class="nav__header">
+		<div class="nav__elements">
+			<div class="nav__element">
+				<a href="{{ path('home')}}"><img src="{{ asset('images/logo.png') }}" alt="logo" class="nav__logo"></a>
+			</div>
+			{% if app.request.cookies.get('access_token') %}
+				<div class="nav__element">
+					<a href="{{ path('dashboard') }}">Dashboard</a>
+				</div>
+			{% else %}
+				<div class="nav__element">
+					<a href="https://id.twitch.tv/oauth2/authorize?client_id=ikt7vfcc895mvotacyjnbvuh7m2duk&redirect_uri=http://localhost:8000/authorization&response_type=code&scope=moderator%3Aread%3Achatters">
+						<button type="button" class="twitch-button">
+							<div class="twitch-button__container">
+								<div>Connect your Twitch</div>
+								<div>
+									<img src="{{ asset('images/twitch.png') }}" alt="twitch" class="nav__twitch">
+								</div>
+							</div>
+						</button>
+					</a>
+				</div>
+			{% endif %}
+		</div>
+	</nav>
+{% endblock %}

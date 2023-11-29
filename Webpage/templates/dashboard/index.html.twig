@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<div class="container min-vh-100">
+		<div class="row mt-5">
+			<div class="col-12 text-center">
+				<h1>Welcome, {{display_name}}</h1>
+				<div class="d-flex gap-3 justify-content-center">
+					<button id="btn-add-bot" class="btn btn-primary" type="button">Add bot to channel</button>
+					<button id="btn-remove-bot" class="btn btn-secondary" type="button">Remove bot from channel</button>
+				</div>
+				<div class="mt-3">
+					See your <a href="/collection/{{login}}">collection</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.getElementById("btn-add-bot").addEventListener("click", function() {
+			const res = fetch("{{path('add_bot')}}", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			}).then(res => res.json()).then(data => {
+				alert(data.message);
+			});
+		});
+
+		document.getElementById("btn-remove-bot").addEventListener("click", function() {
+			const res = fetch("{{path('remove_bot')}}", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				}
+			}).then(res => res.json()).then(data => {
+				alert(data.message);
+			});
+		});
+	</script>
+{% endblock %}

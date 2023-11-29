@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	{% set title = login|capitalize ~ "'s collection" %}
+	{% include 'partials/mainHeading.html.twig' with {'heading': title} %}
+	<div class="container mt-5 min-vh-100">
+		<div class="row">
+			<div class="col-12">
+				<section class="collections">
+				{% for channelName, channelValue in collections %}
+					{% set channelName = channelName|capitalize %}
+					<div class="collections__element">
+						<div class="collection__title">{{ channelName }}</div>
+						<div class="collection">
+							{% for collectible in channelValue %}
+								<div class="collection__element {{ collectible.shiny ? 'shiny' : ''  }}">
+									<div class="collection__image">
+										<img src={{asset("images/collectibles/" ~ collectible.image )}} alt="image">
+									</div>
+									<div class="collection__name">{{ collectible.name }} {{ collectible.shiny ? '(shiny)' : ''  }}</div>
+									<div class="collection__category">{{ collectible.category }}</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				{% endfor %}
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock %}

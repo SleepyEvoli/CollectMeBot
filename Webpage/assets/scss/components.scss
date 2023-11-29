@@ -1,0 +1,134 @@
+.twitch-button {
+	padding: 10px;
+	background-color: #6B2E7A;
+	color: #fff;
+	font-size: 1.5rem;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Fira Sans';
+
+	.twitch-button__container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+	}
+
+	img {
+		width: 32px;
+		filter: brightness(0) invert(1);
+	}
+}
+
+.heading {
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 0;
+}
+
+.heading__main {
+	font-size: 3.5rem;
+	font-weight: 700;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+	margin-top: 3rem;
+	padding-left: 3rem;
+}
+
+.feature-list {
+	font-size: 1.5rem;
+
+	li {
+		margin-left: 2rem;
+		background-color: rgba(255, 255, 255, 0.041);
+		padding: 5px;
+		margin: 10px;
+		border-radius: 5px;
+		list-style: none;
+	}
+}
+
+.accordion-list {
+	summary {
+		list-style: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.041);
+		padding: 5px 0 5px 5px;
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.041);
+		}
+	}
+
+	details {
+		margin-bottom: .5rem;
+	}
+}
+
+.paypal__img {
+	background-color: #fff;
+	padding: 5px;
+	width: fit-content;
+	border-radius: 5px;
+}
+
+.collections {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	.collection {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 1rem;
+		background-color: rgba(255, 255, 255, 0.05);
+		border-radius: 10px;
+		gap: 15px;
+		width: 95%;
+		margin: 0 auto;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+		&__title {
+			font-size: 2rem;
+		}
+	
+		.shiny {
+			background: #819562 !important;
+			background: #e1e0b0 !important;
+    		color: #491e1e;
+		}
+	
+		&__element {
+			border-radius: 15px;
+			background: #423D65;
+			box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+			padding: 1rem;
+			text-align: center;
+			border: 1px solid rgba(255, 255, 255, 0.5);
+	
+			&:hover {
+				border: 1px solid rgba(255, 255, 255, 1);
+				filter: brightness(1.1);
+				cursor: pointer;
+			}
+		}
+	
+		&__image {
+			object-fit: cover;
+			border-radius: 15px;
+			height: 200px;
+			width: 150px;
+	
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 15px;
+			}
+		}
+	
+		&__name {
+			font-weight: 700;
+			padding-top: 1rem;
+		}
+	}
+}
+

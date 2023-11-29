@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<h1 class="text-center  mt-5">CollectMeBot is ready to join your chat...</h1>
+			<div class="text-center mt-5">
+				<button type="button" class="twitch-button">
+					<div class="twitch-button__container">
+						<div>Connect your Twitch</div>
+						<img src="{{ asset('images/twitch.png') }}" alt="twitch" class="nav__twitch">
+					</div>
+				</button>
+			</div>
+		</div>
+		<div class="row mt-5 text-center">
+			<div class="col-md-4 col-12">
+				<div class="mt-3">
+					<h2 class="">What is CollectMeBot?</h2>
+					<div class="mt-1">
+						CollectMeBot is a Twitch Chat Bot that allows you to collect your favorite characters from different universes. Gift them to someone else. Be patient and you might even catch a shiny.
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-12">
+				<div class="mt-3">
+					<h2 class="">How does it work?</h2>
+					<div class="mt-1">
+						CollectMeBot will be in your chat and will listen to chat commands. You can use the commands to collect your favorite characters or see what you have caught so far. Sometimes events will happen and your chat will be able to interact with them. By using !collection you can see your collection at any time. You will have a collection for each channel you play.
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-12">
+				<div class="mt-3">
+					<h2 class="">How do I get started?</h2>
+					<div class="mt-1">
+						You can connect your Twitch account here and start collecting your favorite characters in your Twitch Chat. I will only save your channel name and nothing else. You can disconnect your account at any time.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row mt-5">
+			<div class="text-center col-12">
+				<img class="rounded shadow" src="{{ asset('images/placeholder.png') }}" alt="placerholder" />
+			</div>
+		</div>
+		<div class="row mt-5">
+			<h2 class="">Current Features include:</h2>
+			<ul class="feature-list ms-md-3 text-center text-md-start">
+				<li>Collecting your favorite Character from different universes. More constantly to come!</li>
+				<li>See and share your growing collection at any time</li>
+				<li>Gift any of your characters to someone else</li>
+				<li>Experience multiple events happening in your chat</li>
+				<li>Be lucky and catch shinies</li>
+			</ul>
+		</div>
+		<div class="row mt-5">
+			<h2 class="">Commands:</h2>
+			<div class="accordion-list">
+				<details>
+					<summary>!collect</summary>
+					<div class="mt-2">
+						Collects a random character from the current event.
+					</div>
+				</details>
+				<details>
+					<summary>!collect</summary>
+					<div class="mt-2">
+						Collects a random character from the current event.
+					</div>
+				</details>
+			</div>
+		</div>
+	</div>
+{% endblock %}

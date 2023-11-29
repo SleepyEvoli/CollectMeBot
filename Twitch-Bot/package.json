@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "typescript": "^5.2.2",
+    "websocket": "^1.0.34"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@types/websocket": "^1.0.9"
+  }
+}

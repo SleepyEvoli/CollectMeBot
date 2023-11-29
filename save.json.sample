@@ -1,0 +1,24 @@
+{
+	"channels": {
+		"dasevoli": {
+			"users": {
+				"72883228": {
+					"displayName": "DasEvoli",
+					"id": "72883228",
+					"data": {
+						"collection": [
+							{
+								"id": "BayleefPokemon",
+								"name": "Bayleef",
+								"category": "Pokemon",
+								"date": "2023-11-26T01:45:58.451Z",
+								"shiny": true,
+								"image": "BayleefPokemon.png"
+							}
+						]
+					}
+				}
+			}
+		}
+	}
+}
